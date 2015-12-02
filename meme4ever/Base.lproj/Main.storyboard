@@ -24,7 +24,7 @@
                                 <items>
                                     <barButtonItem title="Pick a Photo" id="ppf-8W-ESL">
                                         <connections>
-                                            <action selector="imagePickController:" destination="BYZ-38-t0r" id="0qT-gz-Wzy"/>
+                                            <action selector="imagePickController:" destination="BYZ-38-t0r" id="227-rV-pTg"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Launch Camera" id="rar-gJ-mqe" userLabel="Launch Camera">
@@ -53,6 +53,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cameraAvailable" destination="rar-gJ-mqe" id="YHT-YA-qH8"/>
                         <outlet property="imageView" destination="DhJ-3u-Qr2" id="pHx-sO-8oa"/>
                     </connections>
                 </viewController>

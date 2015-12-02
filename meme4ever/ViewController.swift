@@ -13,11 +13,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     let imagePick = UIImagePickerController()
     
+    @IBOutlet weak var cameraAvailable: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePick.delegate = self
         
-    }
+        if UIImagePickerController.isCameraDeviceAvailable( UIImagePickerControllerCameraDevice.Front) {
+            cameraAvailable.enabled = true
+        }
+        else {
+            cameraAvailable.enabled = false
+        }
+}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -30,7 +39,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(imagePick, animated: false, completion: nil)
     }
     
-    @IBAction func cameraController (sende: AnyObject) {
+    @IBAction func cameraController (sender: AnyObject) {
         
         if UIImagePickerController.isCameraDeviceAvailable(   UIImagePickerControllerCameraDevice.Front) {
             imagePick.delegate = self
