@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var imageView: UIImageView!
+    let imagePick = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        imagePick.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +24,17 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func imagePickController(sender: AnyObject) {
+        imagePick.allowsEditing = false
+        imagePick.sourceType = .PhotoLibrary
+        presentViewController(imagePick, animated: false, completion: nil)
+    }
+    
+       func imagePickerController(imagePick: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+            imageView.image = ((info as NSDictionary).objectForKey(UIImagePickerControllerOriginalImage) as! UIImage)
+    imagePick.dismissViewControllerAnimated(true, completion: nil)
 
+    }
 }
 
