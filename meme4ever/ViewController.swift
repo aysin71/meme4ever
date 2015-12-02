@@ -30,7 +30,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(imagePick, animated: false, completion: nil)
     }
     
-       func imagePickerController(imagePick: UIImagePickerController,
+    @IBAction func cameraController (sende: AnyObject) {
+        
+        if UIImagePickerController.isCameraDeviceAvailable(   UIImagePickerControllerCameraDevice.Front) {
+            imagePick.delegate = self
+            imagePick.allowsEditing = false
+            imagePick.sourceType = .Camera
+            presentViewController(imagePick, animated: true, completion: nil)
+        } else {
+            print("no front camera available")
+        }
+    }
+    
+    func imagePickerController(imagePick: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             imageView.image = ((info as NSDictionary).objectForKey(UIImagePickerControllerOriginalImage) as! UIImage)
     imagePick.dismissViewControllerAnimated(true, completion: nil)

@@ -29,7 +29,7 @@
                                     </barButtonItem>
                                     <barButtonItem title="Launch Camera" id="rar-gJ-mqe" userLabel="Launch Camera">
                                         <connections>
-                                            <action selector="imagePickController:" destination="BYZ-38-t0r" id="CIw-x2-sKw"/>
+                                            <action selector="cameraController:" destination="BYZ-38-t0r" id="dfd-uy-raL"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
