@@ -25,13 +25,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var toolBar: UIToolbar!
     
+    @IBOutlet weak var topToolBar: UIToolbar!
+    
     //definitions
     let imagePick = UIImagePickerController()
 
     let memeInputText = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSFontAttributeName : UIFont(name: "American Typewriter", size: 40)!,
         NSStrokeWidthAttributeName : NSNumber(float: -4.0)
     ]
     
@@ -77,6 +79,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     }
     
+    //action definitions
+    
     @IBAction func imagePickController(sender: AnyObject) {
         imagePick.allowsEditing = false
         imagePick.sourceType = .PhotoLibrary
@@ -89,6 +93,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imagePick.sourceType = .Camera
             presentViewController(imagePick, animated: true, completion: nil)
     }
+    
+    @IBAction func shareAction(sender: UIBarButtonItem) {
+        if topText.text == "TOP" || bottomText.text == "BOTTOM" || imageView.image == nil {
+            let errorMessage = UIAlertController()
+            errorMessage.title = "error occur"
+            errorMessage.message = "Please edit the image"
+            let alert = UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: {action in self.dismissViewControllerAnimated(true, completion: nil)})
+            errorMessage.addAction(alert)
+            presentViewController(errorMessage, animated: true, completion: nil)
+        }
+        else{
+            let saveMemeImage = generateMemedImage()
+            let activityVC = UIActivityViewController(activityItems: [saveMemeImage], applicationActivities: nil)
+            activityVC.completionWithItemsHandler = {
+                (s: String?, ok: Bool, items: [AnyObject]?, err:NSError?) -> Void in self.save()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
+            presentViewController(activityVC, animated: true, completion: nil)
+        }
+    }
+    
+    
+    //functions :
     
     func imagePickerController(imagePick: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -167,6 +195,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func generateMemedImage() -> UIImage {
         
         toolBar.hidden = true
+        topToolBar.hidden = true
+
         
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawViewHierarchyInRect(view.frame,
@@ -176,6 +206,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         toolBar.hidden = false
+        topToolBar.hidden = false
+
         return memedImage
     }
 
