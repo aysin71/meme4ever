@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
 
+    var memes: [Meme] {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    }
+    
     //Outlet definitions
     @IBOutlet weak var imageView: UIImageView!
     
@@ -18,6 +22,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topText: UITextField!
     
     @IBOutlet weak var bottomText: UITextField!
+    
+    @IBOutlet weak var toolBar: UIToolbar!
     
     //definitions
     let imagePick = UIImagePickerController()
@@ -29,9 +35,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSStrokeWidthAttributeName : NSNumber(float: -4.0)
     ]
     
+    var memedImage = UIImage()
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // Subscribe to keyboard notifications 
+        // Subscribe to keyboard notifications
         self.subscribeToKeyboardNotifications()
         self.subscribeToKeyboardwilhideNotifications()
     }
@@ -147,6 +155,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillHideNotification, object: nil)
     }
+    
+    
+    //all functions necessary to create a memeImage and save it with the related fields
+    
+    func save() {
+        let meme = Meme(topText: topText!.text!  , bottomText: bottomText!.text! , image: imageView.image!, memedImage: generateMemedImage())
+        (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        toolBar.hidden = true
+        
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame,
+            afterScreenUpdates: true)
+        let memedImage : UIImage =
+        UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        toolBar.hidden = false
+        return memedImage
+    }
+
+    
+    
     
 }
 
