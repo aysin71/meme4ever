@@ -10,16 +10,37 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    //Outlet definitions
     @IBOutlet weak var imageView: UIImageView!
-    let imagePick = UIImagePickerController()
     
     @IBOutlet weak var cameraAvailable: UIBarButtonItem!
     
+    @IBOutlet weak var topText: UITextField!
+    
+    @IBOutlet weak var bottomText: UITextField!
+    
+    //definitions
+    let imagePick = UIImagePickerController()
+
+    let memeInputText = [
+        NSStrokeColorAttributeName : UIColor.blackColor(),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName : NSNumber(float: -4.0)
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePick.delegate = self
+        //set Text values
+        //topText.text = "TOP"
+        topText.textAlignment = .Center
+        topText.defaultTextAttributes = memeInputText
+        //bottomText.text = "BOTTOM"
+        bottomText.textAlignment = .Center
+        bottomText.defaultTextAttributes = memeInputText
         
+        //set imagepicker and disable camera when not available
+        imagePick.delegate = self
         if UIImagePickerController.isCameraDeviceAvailable( UIImagePickerControllerCameraDevice.Front) {
             cameraAvailable.enabled = true
         }
@@ -40,15 +61,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func cameraController (sender: AnyObject) {
-        
-        if UIImagePickerController.isCameraDeviceAvailable(   UIImagePickerControllerCameraDevice.Front) {
             imagePick.delegate = self
             imagePick.allowsEditing = false
             imagePick.sourceType = .Camera
             presentViewController(imagePick, animated: true, completion: nil)
-        } else {
-            print("no front camera available")
-        }
     }
     
     func imagePickerController(imagePick: UIImagePickerController,
