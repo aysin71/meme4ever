@@ -36,7 +36,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DhJ-3u-Qr2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DhJ-3u-Qr2">
                                 <rect key="frame" x="20" y="64" width="560" height="492"/>
                                 <animations/>
                             </imageView>
@@ -79,6 +79,7 @@
                             <constraint firstItem="Ssn-qi-vRk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="49a-BE-2az"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DhJ-3u-Qr2" secondAttribute="trailing" id="A95-46-nef"/>
                             <constraint firstItem="DhJ-3u-Qr2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BKR-fv-azg"/>
+                            <constraint firstItem="Ssn-qi-vRk" firstAttribute="top" secondItem="DhJ-3u-Qr2" secondAttribute="bottom" id="EIo-4q-oVn"/>
                             <constraint firstItem="19N-uC-vb1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="M6h-BM-0dz"/>
                             <constraint firstItem="19N-uC-vb1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="Ma7-gG-KM2"/>
                             <constraint firstItem="mE7-mM-jkV" firstAttribute="top" secondItem="19N-uC-vb1" secondAttribute="bottom" id="UYO-jB-jo6"/>
@@ -86,7 +87,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="19N-uC-vb1" secondAttribute="trailing" id="Vs4-av-S2e"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ssn-qi-vRk" secondAttribute="bottom" id="YJT-Vj-7ls"/>
                             <constraint firstItem="0kW-pL-LbQ" firstAttribute="bottom" secondItem="DhJ-3u-Qr2" secondAttribute="bottom" id="ZwS-SL-5dn"/>
-                            <constraint firstItem="Ssn-qi-vRk" firstAttribute="top" secondItem="DhJ-3u-Qr2" secondAttribute="bottom" id="ctL-d2-AEb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ssn-qi-vRk" secondAttribute="trailing" id="g71-AU-I5B"/>
                             <constraint firstItem="mE7-mM-jkV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oYe-ZC-DLy"/>
                         </constraints>
